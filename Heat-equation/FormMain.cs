@@ -21,12 +21,14 @@ namespace Heat_equation
         private void BTN_TEST_Click(object sender, EventArgs e)
         {
             Rtb_Result.Clear();
-            Calculation obj = new Calculation();
-            obj.Init();
-            obj.Print(Rtb_Result);
+            Calculation objCalc = new Calculation();
+            objCalc.Init();
+
+            objCalc.Print(Rtb_Result);
             Rtb_Result.AppendText(Environment.NewLine);
-            obj.Calc();
-            obj.Print(Rtb_Result);
+
+            objCalc.Calc();
+            objCalc.Print(Rtb_Result);
         }
     }
 }

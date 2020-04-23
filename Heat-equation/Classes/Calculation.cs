@@ -78,6 +78,30 @@ namespace Heat_equation.Classes
                     }
                 }
 
+                // Пересчет границ с учетом теполового потока (гран. усл. II рода)
+                //for (int i = 0; i < SizeY; i++)
+                //{
+                //    Unew[0, i] = Left_2(i);
+                //    Unew[SizeX - 1, i] = Right_2(i);
+                //}
+                //for (int i = 0; i < SizeX; i++)
+                //{
+                //    Unew[i, 0] = Up_2(i);
+                //    Unew[i, SizeY - 1] = Bottom_2(i);
+                //}
+
+                // Пересчет границ с учетом теполового потока (гран. усл. III рода)
+                //for (int i = 0; i < SizeY; i++)
+                //{
+                //    Unew[0, i] = Left_3(i);
+                //    Unew[SizeX - 1, i] = Right_3(i);
+                //}
+                //for (int i = 0; i < SizeX; i++)
+                //{
+                //    Unew[i, 0] = Up_3(i);
+                //    Unew[i, SizeY - 1] = Bottom_3(i);
+                //}
+
                 // Копирование значений
                 for (int i = 0; i < SizeX; i++)
                 {
@@ -130,40 +154,46 @@ namespace Heat_equation.Classes
             return 0.0;
         }
 
-        // Границы 2-го рода - ДОДЕЛАТЬ
-        private double Left_2(double x, double y)
+        // Границы 2-го рода
+        private double Left_2(int i)
         {
-            return 0.0;
+            return U[1, i] + Global.Q1 * Global.Hx / Global.Lamda;
         }
-        private double Up_2(double x, double y)
+        
+        private double Up_2(int i)
         {
-            return 0.0;
-        }
-        private double Right_2(double x, double y)
-        {
-            return 0.0;
-        }
-        private double Bottom_2(double x, double y)
-        {
-            return 0.0;
+            return U[i, 1] + Global.Q2 * Global.Hy / Global.Lamda;
         }
 
-        // Границы 3-го рода - ДОДЕЛАТЬ
-        private double Left_3(double x, double y)
+        private double Right_2(int i)
         {
-            return 0.0;
+            return U[SizeX - 2, i] + Global.Q3 * Global.Hx / Global.Lamda;
         }
-        private double Up_3(double x, double y)
+
+        private double Bottom_2(int i)
         {
-            return 0.0;
+            return U[i, SizeY - 2] + Global.Q4 * Global.Hy / Global.Lamda;
         }
-        private double Right_3(double x, double y)
+
+        // Границы 3-го рода
+        private double Left_3(int i)
         {
-            return 0.0;
+            return (U[1, i] + Global.Zx * Global.Tout1) / (1 + Global.Zx);
         }
-        private double Bottom_3(double x, double y)
+
+        private double Up_3(int i)
         {
-            return 0.0;
+            return (U[i, 1] + Global.Zy * Global.Tout2) / (1 + Global.Zy); ;
+        }
+
+        private double Right_3(int i)
+        {
+            return (U[SizeX - 2, i] + Global.Zx * Global.Tout3) / (1 + Global.Zx);
+        }
+        
+        private double Bottom_3(int i)
+        {
+            return (U[i, SizeY - 2] + Global.Zy * Global.Tout4) / (1 + Global.Zy);
         }
     }
 }
