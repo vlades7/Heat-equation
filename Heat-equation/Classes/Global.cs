@@ -31,5 +31,7 @@ namespace Heat_equation.Classes
 
         public static double Zx = Alpha * Hx / Lamda;  
         public static double Zy = Alpha * Hy / Lamda;
+
+        public static int MaxIteration = 100000;       // Количество итераций
     }
 }

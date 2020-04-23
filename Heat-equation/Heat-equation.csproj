@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Calculation.cs" />
+    <Compile Include="Classes\Global.cs" />
+    <Compile Include="Classes\Graphics2D.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>

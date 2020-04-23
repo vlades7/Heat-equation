@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Heat_equation.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,17 @@ namespace Heat_equation
         public FormMain()
         {
             InitializeComponent();
+        }
+
+        private void BTN_TEST_Click(object sender, EventArgs e)
+        {
+            Rtb_Result.Clear();
+            Calculation obj = new Calculation();
+            obj.Init();
+            obj.Print(Rtb_Result);
+            Rtb_Result.AppendText(Environment.NewLine);
+            obj.Calc();
+            obj.Print(Rtb_Result);
         }
     }
 }

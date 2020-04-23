@@ -31,11 +31,14 @@
             this.ParamsPanel = new System.Windows.Forms.Panel();
             this.OutputPanel = new System.Windows.Forms.Panel();
             this.Rtb_Result = new System.Windows.Forms.RichTextBox();
+            this.BTN_TEST = new System.Windows.Forms.Button();
+            this.ParamsPanel.SuspendLayout();
             this.OutputPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // ParamsPanel
             // 
+            this.ParamsPanel.Controls.Add(this.BTN_TEST);
             this.ParamsPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.ParamsPanel.Location = new System.Drawing.Point(0, 0);
             this.ParamsPanel.Name = "ParamsPanel";
@@ -60,6 +63,16 @@
             this.Rtb_Result.TabIndex = 0;
             this.Rtb_Result.Text = "";
             // 
+            // BTN_TEST
+            // 
+            this.BTN_TEST.Location = new System.Drawing.Point(36, 213);
+            this.BTN_TEST.Name = "BTN_TEST";
+            this.BTN_TEST.Size = new System.Drawing.Size(197, 210);
+            this.BTN_TEST.TabIndex = 0;
+            this.BTN_TEST.Text = "TEST";
+            this.BTN_TEST.UseVisualStyleBackColor = true;
+            this.BTN_TEST.Click += new System.EventHandler(this.BTN_TEST_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -70,6 +83,7 @@
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Уравнение теплопроводности";
+            this.ParamsPanel.ResumeLayout(false);
             this.OutputPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -80,6 +94,7 @@
         private System.Windows.Forms.Panel ParamsPanel;
         private System.Windows.Forms.Panel OutputPanel;
         private System.Windows.Forms.RichTextBox Rtb_Result;
+        private System.Windows.Forms.Button BTN_TEST;
     }
 }
 
