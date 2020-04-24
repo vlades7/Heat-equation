@@ -8,6 +8,7 @@ namespace Heat_equation
 {
     static class Program
     {
+        public static FormMain form = null;
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>

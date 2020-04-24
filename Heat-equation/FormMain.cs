@@ -16,6 +16,7 @@ namespace Heat_equation
         public FormMain()
         {
             InitializeComponent();
+            CB_TypeBorders.SelectedIndex = Global.IndexTypeBorders;
         }
 
         private void BTN_TEST_Click(object sender, EventArgs e)
@@ -23,12 +24,16 @@ namespace Heat_equation
             Rtb_Result.Clear();
             Calculation objCalc = new Calculation();
             objCalc.Init();
-
             objCalc.Print(Rtb_Result);
             Rtb_Result.AppendText(Environment.NewLine);
 
             objCalc.Calc();
             objCalc.Print(Rtb_Result);
+        }
+
+        private void CB_TypeBorders_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Global.IndexTypeBorders = CB_TypeBorders.SelectedIndex;
         }
     }
 }

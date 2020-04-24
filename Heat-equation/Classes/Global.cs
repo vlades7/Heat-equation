@@ -18,7 +18,10 @@ namespace Heat_equation.Classes
 
         public static double Lamda = 1.51;             // Коэффициент теплопроводности (бетон)
         public static double A = 0.000619;             // Коэффициент температуропроводности (бетон)
-        public static double Alpha = 23.0;             // Коэффициент теплообмена(теплоотдачи) (бетон)
+        public static double Alpha1 = 23.0;             // Коэффициент теплообмена(теплоотдачи) слева
+        public static double Alpha2 = 23.0;             // Коэффициент теплообмена(теплоотдачи) сверху
+        public static double Alpha3 = 23.0;             // Коэффициент теплообмена(теплоотдачи) справа
+        public static double Alpha4 = 23.0;             // Коэффициент теплообмена(теплоотдачи) снизу
 
         public static double Tout1 = 10.0;             // Температура снаружи слева
         public static double Tout2 = 10.0;             // Температура снаружи сверху
@@ -29,9 +32,8 @@ namespace Heat_equation.Classes
         public static double Hy = 0.2;                 // Шаг по OY
         public static double Tau = 0.1;                // Шаг по времени
 
-        public static double Zx = Alpha * Hx / Lamda;  
-        public static double Zy = Alpha * Hy / Lamda;
-
         public static int MaxIteration = 100000;       // Количество итераций
+
+        public static int IndexTypeBorders = 0;        // Индекс выбранного типа границ
     }
 }

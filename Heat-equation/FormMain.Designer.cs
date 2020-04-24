@@ -29,21 +29,33 @@
         private void InitializeComponent()
         {
             this.ParamsPanel = new System.Windows.Forms.Panel();
+            this.BTN_TEST = new System.Windows.Forms.Button();
             this.OutputPanel = new System.Windows.Forms.Panel();
             this.Rtb_Result = new System.Windows.Forms.RichTextBox();
-            this.BTN_TEST = new System.Windows.Forms.Button();
+            this.CB_TypeBorders = new System.Windows.Forms.ComboBox();
             this.ParamsPanel.SuspendLayout();
             this.OutputPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // ParamsPanel
             // 
+            this.ParamsPanel.Controls.Add(this.CB_TypeBorders);
             this.ParamsPanel.Controls.Add(this.BTN_TEST);
             this.ParamsPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.ParamsPanel.Location = new System.Drawing.Point(0, 0);
             this.ParamsPanel.Name = "ParamsPanel";
             this.ParamsPanel.Size = new System.Drawing.Size(279, 552);
             this.ParamsPanel.TabIndex = 0;
+            // 
+            // BTN_TEST
+            // 
+            this.BTN_TEST.Location = new System.Drawing.Point(36, 213);
+            this.BTN_TEST.Name = "BTN_TEST";
+            this.BTN_TEST.Size = new System.Drawing.Size(197, 210);
+            this.BTN_TEST.TabIndex = 0;
+            this.BTN_TEST.Text = "TEST";
+            this.BTN_TEST.UseVisualStyleBackColor = true;
+            this.BTN_TEST.Click += new System.EventHandler(this.BTN_TEST_Click);
             // 
             // OutputPanel
             // 
@@ -63,15 +75,20 @@
             this.Rtb_Result.TabIndex = 0;
             this.Rtb_Result.Text = "";
             // 
-            // BTN_TEST
+            // CB_TypeBorders
             // 
-            this.BTN_TEST.Location = new System.Drawing.Point(36, 213);
-            this.BTN_TEST.Name = "BTN_TEST";
-            this.BTN_TEST.Size = new System.Drawing.Size(197, 210);
-            this.BTN_TEST.TabIndex = 0;
-            this.BTN_TEST.Text = "TEST";
-            this.BTN_TEST.UseVisualStyleBackColor = true;
-            this.BTN_TEST.Click += new System.EventHandler(this.BTN_TEST_Click);
+            this.CB_TypeBorders.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CB_TypeBorders.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CB_TypeBorders.FormattingEnabled = true;
+            this.CB_TypeBorders.Items.AddRange(new object[] {
+            "Границы 1-го рода",
+            "Границы 2-го рода",
+            "Границы 3-го рода"});
+            this.CB_TypeBorders.Location = new System.Drawing.Point(36, 57);
+            this.CB_TypeBorders.Name = "CB_TypeBorders";
+            this.CB_TypeBorders.Size = new System.Drawing.Size(197, 26);
+            this.CB_TypeBorders.TabIndex = 1;
+            this.CB_TypeBorders.SelectedIndexChanged += new System.EventHandler(this.CB_TypeBorders_SelectedIndexChanged);
             // 
             // FormMain
             // 
@@ -93,8 +110,9 @@
 
         private System.Windows.Forms.Panel ParamsPanel;
         private System.Windows.Forms.Panel OutputPanel;
-        private System.Windows.Forms.RichTextBox Rtb_Result;
         private System.Windows.Forms.Button BTN_TEST;
+        public System.Windows.Forms.RichTextBox Rtb_Result;
+        private System.Windows.Forms.ComboBox CB_TypeBorders;
     }
 }
 
