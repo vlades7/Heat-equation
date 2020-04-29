@@ -9,10 +9,11 @@ namespace Heat_equation.Classes
 {
     class Calculation
     {
-        double[,] U = null;             // Значения температуры в узле в k-ый момент времени
-        double[,] Unew = null;          // Значения температуру в узле в (k+1)-ый момент времени
-        public int SizeX { get; set; }  // Количество узлов по OX
-        public int SizeY { get; set; }  // Количество узлов по OY
+        public double[,] Unew { get; set; } = null;  // Значения температур в узле в (k+1)-ый момент времени
+        public double[,] U { get; set; } = null;     // Значения температур в узле в k-ый момент времени
+        public int SizeX { get; set; }               // Количество узлов по OX
+        public int SizeY { get; set; }               // Количество узлов по OY
+        public long NumIteration { get; set; }       // Номер текущей итерации
 
         public Calculation()
         {
@@ -21,6 +22,7 @@ namespace Heat_equation.Classes
 
             U = new double[SizeX, SizeY];
             Unew = new double[SizeX, SizeY];
+            NumIteration = 0;
         }
 
         // Инициализация начальных значений границ и внутренней области
@@ -50,15 +52,25 @@ namespace Heat_equation.Classes
         }
 
         // Основное итерационное вычисление
-        public void Calc()
+        public void CalcAll()
         {
             for (int k = 0; k < Global.MaxIteration; k++)
             {
-                //SimpleAlgorithm();
-                ContourAlgorithm();
+                SimpleAlgorithm();
+                //ContourAlgorithm();
 
                 Copy(Unew, U);
             }
+        }
+
+        // Вычисление одной итерации
+        public void CalcIteration()
+        {
+            SimpleAlgorithm();
+            //ContourAlgorithm();
+
+            Copy(Unew, U);
+            NumIteration++;
         }
 
         // Напечатать текущее состояние
@@ -182,7 +194,7 @@ namespace Heat_equation.Classes
         // Рассчет внутренней области
         private double Fx(double x = 0.0, double y = 0.0)
         {
-            return x + y;
+            return 0.0;
         }
 
         // Вычисление границ 2-го рода
