@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Heat_equation.Classes
@@ -32,34 +29,37 @@ namespace Heat_equation.Classes
             {
                 for (int j = 1; j < SizeY - 1; j++)
                 {
-                    U[i, j] = Fx(i * Global.Hx, j * Global.Hy);
+                    Unew[i, j] = Fx(i * Global.Hx, j * Global.Hy);
                 }
             }
 
-            for (int i = 0; i < SizeY; i++)
+            // Пересчет границ
+            switch (Global.IndexTypeBorders)
             {
-                U[0, i] = Left_1(0.0, i * Global.Hy);
-                U[SizeX - 1, i] = Right_1(Global.Lx, i * Global.Hy);
+                case 0:
+                    Borders_1();
+                    break;
+                case 1:
+                    Borders_2();
+                    break;
+                case 2:
+                    Borders_3();
+                    break;
             }
 
-            for (int i = 0; i < SizeX; i++)
-            {
-                U[i, 0] = Up_1(i * Global.Hx, Global.Ly);
-                U[i, SizeY - 1] = Bottom_1(i * Global.Lx, 0.0);
-            }
-
-            Copy(U, Unew);
+            Copy(Unew, U);
         }
 
         // Основное итерационное вычисление
         public void CalcAll()
         {
-            for (int k = 0; k < Global.MaxIteration; k++)
+            for (int k = 0; k < Global.LastIteration; k++)
             {
                 SimpleAlgorithm();
                 //ContourAlgorithm();
 
                 Copy(Unew, U);
+                NumIteration++;
             }
         }
 
@@ -71,6 +71,30 @@ namespace Heat_equation.Classes
 
             Copy(Unew, U);
             NumIteration++;
+        }
+
+        // Сохранение массива температур в Excel файл
+        public void SaveState()
+        {
+            SaveFileDialog saveFile = new SaveFileDialog();
+            saveFile.FileName = string.Format("Heat_{0}_Out_{1}", NumIteration, DateTime.Now.Millisecond);
+            saveFile.Filter = "CSV files (*.csv)|*.csv|XLS files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+            if (saveFile.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter sw = new StreamWriter(saveFile.FileName);
+
+                for (int i = 0; i < SizeX; i++)
+                {
+                    for (int j = 0; j < SizeY; j++)
+                    {
+                        sw.Write(Unew[i, j]);
+                        if (j < SizeX - 1)
+                            sw.Write(";");
+                    }
+                    sw.WriteLine();
+                }
+                sw.Close();
+            }
         }
 
         // Напечатать текущее состояние
@@ -98,16 +122,17 @@ namespace Heat_equation.Classes
                 }
             }
 
-            // Пересчет границ с учетом теполового потока
+            // Пересчет границ
             switch (Global.IndexTypeBorders)
             {
+                case 0:
+                    Borders_1();
+                    break;
                 case 1:
                     Borders_2();
                     break;
                 case 2:
                     Borders_3();
-                    break;
-                default:
                     break;
             }
         }
@@ -124,13 +149,14 @@ namespace Heat_equation.Classes
             // Внешний контур
             switch (Global.IndexTypeBorders)
             {
+                case 0:
+                    Borders_1();
+                    break;
                 case 1:
                     Borders_2();
                     break;
                 case 2:
                     Borders_3();
-                    break;
-                default:
                     break;
             }
 
@@ -197,6 +223,22 @@ namespace Heat_equation.Classes
             return 0.0;
         }
 
+        // Вычисление границ 1-го рода
+        private void Borders_1()
+        {
+            for (int i = 0; i < SizeY; i++)
+            {
+                Unew[0, i] = Left_1(0.0, i * Global.Hy);
+                Unew[SizeX - 1, i] = Right_1(Global.Lx, i * Global.Hy);
+            }
+
+            for (int i = 0; i < SizeX; i++)
+            {
+                Unew[i, 0] = Up_1(i * Global.Hx, Global.Ly);
+                Unew[i, SizeY - 1] = Bottom_1(i * Global.Lx, 0.0);
+            }
+        }
+
         // Вычисление границ 2-го рода
         private void Borders_2()
         {
@@ -237,22 +279,22 @@ namespace Heat_equation.Classes
         #region Границы 1-го рода
         private double Left_1(double x, double y)
         {
-            return 0.0;
+            return Global.T1;
         }
 
         private double Up_1(double x, double y)
         {
-            return 0.0;
+            return Global.T2;
         }
 
         private double Right_1(double x, double y)
         {
-            return 0.0;
+            return Global.T3;
         }
 
         private double Bottom_1(double x, double y)
         {
-            return 0.0;
+            return Global.T4;
         }
         #endregion
 
