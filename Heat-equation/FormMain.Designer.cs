@@ -29,6 +29,14 @@
         private void InitializeComponent()
         {
             this.ParamsPanel = new System.Windows.Forms.Panel();
+            this.TB_LastIteration = new System.Windows.Forms.TextBox();
+            this.Label_LastIteration = new System.Windows.Forms.Label();
+            this.Btn_CalcToLast = new System.Windows.Forms.Button();
+            this.Check_SaveFile = new System.Windows.Forms.CheckBox();
+            this.TB_MaxTemp = new System.Windows.Forms.TextBox();
+            this.TB_MinTemp = new System.Windows.Forms.TextBox();
+            this.Label_MaxTemp = new System.Windows.Forms.Label();
+            this.Label_MinTemp = new System.Windows.Forms.Label();
             this.GB_CommonParams = new System.Windows.Forms.GroupBox();
             this.TB_Lamda = new System.Windows.Forms.TextBox();
             this.TB_A = new System.Windows.Forms.TextBox();
@@ -81,22 +89,11 @@
             this.Label_Tout2 = new System.Windows.Forms.Label();
             this.Label_Tout1 = new System.Windows.Forms.Label();
             this.TB_Alpha4 = new System.Windows.Forms.TextBox();
-            this.OutputPanel = new System.Windows.Forms.Panel();
-            this.Rtb_Result = new System.Windows.Forms.RichTextBox();
-            this.Label_MinTemp = new System.Windows.Forms.Label();
-            this.Label_MaxTemp = new System.Windows.Forms.Label();
-            this.TB_MinTemp = new System.Windows.Forms.TextBox();
-            this.TB_MaxTemp = new System.Windows.Forms.TextBox();
-            this.Check_SaveFile = new System.Windows.Forms.CheckBox();
-            this.Btn_CalcToLast = new System.Windows.Forms.Button();
-            this.Label_LastIteration = new System.Windows.Forms.Label();
-            this.TB_LastIteration = new System.Windows.Forms.TextBox();
             this.ParamsPanel.SuspendLayout();
             this.GB_CommonParams.SuspendLayout();
             this.GB_First.SuspendLayout();
             this.GB_Second.SuspendLayout();
             this.GB_Third.SuspendLayout();
-            this.OutputPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // ParamsPanel
@@ -115,12 +112,84 @@
             this.ParamsPanel.Controls.Add(this.GB_First);
             this.ParamsPanel.Controls.Add(this.GB_Second);
             this.ParamsPanel.Controls.Add(this.GB_Third);
-            this.ParamsPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ParamsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ParamsPanel.Location = new System.Drawing.Point(0, 0);
             this.ParamsPanel.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
             this.ParamsPanel.Name = "ParamsPanel";
-            this.ParamsPanel.Size = new System.Drawing.Size(1148, 437);
+            this.ParamsPanel.Size = new System.Drawing.Size(1148, 446);
             this.ParamsPanel.TabIndex = 0;
+            // 
+            // TB_LastIteration
+            // 
+            this.TB_LastIteration.Location = new System.Drawing.Point(1028, 157);
+            this.TB_LastIteration.Name = "TB_LastIteration";
+            this.TB_LastIteration.Size = new System.Drawing.Size(100, 26);
+            this.TB_LastIteration.TabIndex = 17;
+            this.TB_LastIteration.Leave += new System.EventHandler(this.TB_LastIteration_Leave);
+            // 
+            // Label_LastIteration
+            // 
+            this.Label_LastIteration.AutoSize = true;
+            this.Label_LastIteration.Location = new System.Drawing.Point(801, 157);
+            this.Label_LastIteration.Name = "Label_LastIteration";
+            this.Label_LastIteration.Size = new System.Drawing.Size(141, 19);
+            this.Label_LastIteration.TabIndex = 16;
+            this.Label_LastIteration.Text = "Номер итерации:";
+            // 
+            // Btn_CalcToLast
+            // 
+            this.Btn_CalcToLast.Location = new System.Drawing.Point(926, 372);
+            this.Btn_CalcToLast.Name = "Btn_CalcToLast";
+            this.Btn_CalcToLast.Size = new System.Drawing.Size(210, 55);
+            this.Btn_CalcToLast.TabIndex = 15;
+            this.Btn_CalcToLast.Text = "Подсчитать до последней итерации";
+            this.Btn_CalcToLast.UseVisualStyleBackColor = true;
+            this.Btn_CalcToLast.Click += new System.EventHandler(this.Btn_CalcToLast_Click);
+            // 
+            // Check_SaveFile
+            // 
+            this.Check_SaveFile.AutoSize = true;
+            this.Check_SaveFile.Location = new System.Drawing.Point(805, 197);
+            this.Check_SaveFile.Name = "Check_SaveFile";
+            this.Check_SaveFile.Size = new System.Drawing.Size(286, 23);
+            this.Check_SaveFile.TabIndex = 14;
+            this.Check_SaveFile.Text = "Сохранение последней итерации";
+            this.Check_SaveFile.UseVisualStyleBackColor = true;
+            this.Check_SaveFile.CheckedChanged += new System.EventHandler(this.Check_SaveFile_CheckedChanged);
+            // 
+            // TB_MaxTemp
+            // 
+            this.TB_MaxTemp.Location = new System.Drawing.Point(1028, 117);
+            this.TB_MaxTemp.Name = "TB_MaxTemp";
+            this.TB_MaxTemp.Size = new System.Drawing.Size(100, 26);
+            this.TB_MaxTemp.TabIndex = 13;
+            this.TB_MaxTemp.Leave += new System.EventHandler(this.TB_MaxTemp_Leave);
+            // 
+            // TB_MinTemp
+            // 
+            this.TB_MinTemp.Location = new System.Drawing.Point(1028, 77);
+            this.TB_MinTemp.Name = "TB_MinTemp";
+            this.TB_MinTemp.Size = new System.Drawing.Size(100, 26);
+            this.TB_MinTemp.TabIndex = 12;
+            this.TB_MinTemp.Leave += new System.EventHandler(this.TB_MinTemp_Leave);
+            // 
+            // Label_MaxTemp
+            // 
+            this.Label_MaxTemp.AutoSize = true;
+            this.Label_MaxTemp.Location = new System.Drawing.Point(801, 117);
+            this.Label_MaxTemp.Name = "Label_MaxTemp";
+            this.Label_MaxTemp.Size = new System.Drawing.Size(229, 19);
+            this.Label_MaxTemp.TabIndex = 11;
+            this.Label_MaxTemp.Text = "Максимальная температура:";
+            // 
+            // Label_MinTemp
+            // 
+            this.Label_MinTemp.AutoSize = true;
+            this.Label_MinTemp.Location = new System.Drawing.Point(801, 77);
+            this.Label_MinTemp.Name = "Label_MinTemp";
+            this.Label_MinTemp.Size = new System.Drawing.Size(221, 19);
+            this.Label_MinTemp.TabIndex = 10;
+            this.Label_MinTemp.Text = "Минимальная температура:";
             // 
             // GB_CommonParams
             // 
@@ -633,106 +702,12 @@
             this.TB_Alpha4.TabIndex = 16;
             this.TB_Alpha4.Leave += new System.EventHandler(this.TB_Alpha4_Leave);
             // 
-            // OutputPanel
-            // 
-            this.OutputPanel.Controls.Add(this.Rtb_Result);
-            this.OutputPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.OutputPanel.Location = new System.Drawing.Point(0, 437);
-            this.OutputPanel.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
-            this.OutputPanel.Name = "OutputPanel";
-            this.OutputPanel.Size = new System.Drawing.Size(1148, 85);
-            this.OutputPanel.TabIndex = 1;
-            // 
-            // Rtb_Result
-            // 
-            this.Rtb_Result.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Rtb_Result.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Rtb_Result.Location = new System.Drawing.Point(0, 0);
-            this.Rtb_Result.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
-            this.Rtb_Result.Name = "Rtb_Result";
-            this.Rtb_Result.Size = new System.Drawing.Size(1148, 85);
-            this.Rtb_Result.TabIndex = 0;
-            this.Rtb_Result.Text = "";
-            // 
-            // Label_MinTemp
-            // 
-            this.Label_MinTemp.AutoSize = true;
-            this.Label_MinTemp.Location = new System.Drawing.Point(801, 77);
-            this.Label_MinTemp.Name = "Label_MinTemp";
-            this.Label_MinTemp.Size = new System.Drawing.Size(221, 19);
-            this.Label_MinTemp.TabIndex = 10;
-            this.Label_MinTemp.Text = "Минимальная температура:";
-            // 
-            // Label_MaxTemp
-            // 
-            this.Label_MaxTemp.AutoSize = true;
-            this.Label_MaxTemp.Location = new System.Drawing.Point(801, 117);
-            this.Label_MaxTemp.Name = "Label_MaxTemp";
-            this.Label_MaxTemp.Size = new System.Drawing.Size(229, 19);
-            this.Label_MaxTemp.TabIndex = 11;
-            this.Label_MaxTemp.Text = "Максимальная температура:";
-            // 
-            // TB_MinTemp
-            // 
-            this.TB_MinTemp.Location = new System.Drawing.Point(1028, 77);
-            this.TB_MinTemp.Name = "TB_MinTemp";
-            this.TB_MinTemp.Size = new System.Drawing.Size(100, 26);
-            this.TB_MinTemp.TabIndex = 12;
-            this.TB_MinTemp.Leave += new System.EventHandler(this.TB_MinTemp_Leave);
-            // 
-            // TB_MaxTemp
-            // 
-            this.TB_MaxTemp.Location = new System.Drawing.Point(1028, 117);
-            this.TB_MaxTemp.Name = "TB_MaxTemp";
-            this.TB_MaxTemp.Size = new System.Drawing.Size(100, 26);
-            this.TB_MaxTemp.TabIndex = 13;
-            this.TB_MaxTemp.Leave += new System.EventHandler(this.TB_MaxTemp_Leave);
-            // 
-            // Check_SaveFile
-            // 
-            this.Check_SaveFile.AutoSize = true;
-            this.Check_SaveFile.Location = new System.Drawing.Point(805, 197);
-            this.Check_SaveFile.Name = "Check_SaveFile";
-            this.Check_SaveFile.Size = new System.Drawing.Size(286, 23);
-            this.Check_SaveFile.TabIndex = 14;
-            this.Check_SaveFile.Text = "Сохранение последней итерации";
-            this.Check_SaveFile.UseVisualStyleBackColor = true;
-            this.Check_SaveFile.CheckedChanged += new System.EventHandler(this.Check_SaveFile_CheckedChanged);
-            // 
-            // Btn_CalcToLast
-            // 
-            this.Btn_CalcToLast.Location = new System.Drawing.Point(926, 372);
-            this.Btn_CalcToLast.Name = "Btn_CalcToLast";
-            this.Btn_CalcToLast.Size = new System.Drawing.Size(210, 55);
-            this.Btn_CalcToLast.TabIndex = 15;
-            this.Btn_CalcToLast.Text = "Подсчитать до последней итерации";
-            this.Btn_CalcToLast.UseVisualStyleBackColor = true;
-            this.Btn_CalcToLast.Click += new System.EventHandler(this.Btn_CalcToLast_Click);
-            // 
-            // Label_LastIteration
-            // 
-            this.Label_LastIteration.AutoSize = true;
-            this.Label_LastIteration.Location = new System.Drawing.Point(801, 157);
-            this.Label_LastIteration.Name = "Label_LastIteration";
-            this.Label_LastIteration.Size = new System.Drawing.Size(141, 19);
-            this.Label_LastIteration.TabIndex = 16;
-            this.Label_LastIteration.Text = "Номер итерации:";
-            // 
-            // TB_LastIteration
-            // 
-            this.TB_LastIteration.Location = new System.Drawing.Point(1028, 157);
-            this.TB_LastIteration.Name = "TB_LastIteration";
-            this.TB_LastIteration.Size = new System.Drawing.Size(100, 26);
-            this.TB_LastIteration.TabIndex = 17;
-            this.TB_LastIteration.Leave += new System.EventHandler(this.TB_LastIteration_Leave);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1148, 522);
-            this.Controls.Add(this.OutputPanel);
+            this.ClientSize = new System.Drawing.Size(1148, 446);
             this.Controls.Add(this.ParamsPanel);
             this.Font = new System.Drawing.Font("MS Reference Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
@@ -750,7 +725,6 @@
             this.GB_Second.PerformLayout();
             this.GB_Third.ResumeLayout(false);
             this.GB_Third.PerformLayout();
-            this.OutputPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -758,8 +732,6 @@
         #endregion
 
         private System.Windows.Forms.Panel ParamsPanel;
-        private System.Windows.Forms.Panel OutputPanel;
-        public System.Windows.Forms.RichTextBox Rtb_Result;
         private System.Windows.Forms.ComboBox CB_TypeBorders;
         private System.Windows.Forms.Button Btn_Simulation;
         private System.Windows.Forms.GroupBox GB_CommonParams;

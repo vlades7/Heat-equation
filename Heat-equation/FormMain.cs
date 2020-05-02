@@ -11,7 +11,7 @@ namespace Heat_equation
             InitializeComponent();
             InitForm();
         }
-
+        
         private void InitForm()
         {
             CB_TypeBorders.SelectedIndex = Global.IndexTypeBorders;
@@ -112,7 +112,10 @@ namespace Heat_equation
 
         private void WarningMessage()
         {
-            string str = "Проверьте выполнение следующих условий:\n- Длина пластины >= Шаг по OX\n- Ширина пластины >= Шаг по OY\n- Критерий устойчивости";
+            string str = "Проверьте выполнение следующих условий:\n" +
+                "- Длина пластины >= Шаг по OX\n" +
+                "- Ширина пластины >= Шаг по OY\n" +
+                "- Критерий устойчивости";
             MessageBox.Show(str, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
