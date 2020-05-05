@@ -205,16 +205,9 @@ namespace Heat_equation.Classes
         // Основная расчетная формула пятиточечного шаблона
         private double MainFormula(int i, int j)
         {
-            return U[i, j] + Global.A * Global.A * Global.Tau * 
+            return U[i, j] + Global.A * Global.A * Global.Tau *
                 ((U[i + 1, j] + U[i - 1, j] - 2 * U[i, j]) / (Global.Hx * Global.Hx) +
-                        (U[i, j + 1] + U[i, j - 1] - 2 * U[i, j]) / (Global.Hy * Global.Hy)) + 
-                        Global.Tau * ExtraFunc(i, j);
-        }
-
-        // Функция, описывающая возможное дополнительное воздействие
-        private double ExtraFunc(int i, int j)
-        {
-            return 0.0;
+                        (U[i, j + 1] + U[i, j - 1] - 2 * U[i, j]) / (Global.Hy * Global.Hy));
         }
 
         // Рассчет внутренней области
