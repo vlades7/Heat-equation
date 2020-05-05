@@ -83,11 +83,11 @@ namespace Heat_equation.Classes
             {
                 StreamWriter sw = new StreamWriter(saveFile.FileName);
 
-                for (int i = 0; i < SizeX; i++)
+                for (int i = 0; i < SizeY; i++)
                 {
-                    for (int j = 0; j < SizeY; j++)
+                    for (int j = 0; j < SizeX; j++)
                     {
-                        sw.Write(Unew[i, j]);
+                        sw.Write(Unew[j, i]);
                         if (j < SizeX - 1)
                             sw.Write(";");
                     }
