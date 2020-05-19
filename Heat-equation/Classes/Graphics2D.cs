@@ -110,7 +110,7 @@ namespace Heat_equation.Classes
             {
                 if ((0 <= x) && (x < SizeX) && (0 <= y) && (y < SizeY))
                 {
-                    Title = string.Format("Temp = {0:f5}", mathSolver.U[x, y]);
+                    Title = string.Format("Temp = {0:f5} Iteration = {1}", mathSolver.U[x, y], mathSolver.NumIteration);
                     Thread.Sleep(2000);
                 }
             }
