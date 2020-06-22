@@ -76,7 +76,7 @@ namespace Heat_equation.Classes
         {
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             Draw();
-            Title = string.Format("Tau = {0} Iteration = {1} Fps = {2:f1}", Global.Tau, mathSolver.NumIteration, RenderFrequency);
+            Title = string.Format("Time = {0}", Global.Tau * mathSolver.NumIteration);
             SwapBuffers();
         }
 
@@ -110,7 +110,8 @@ namespace Heat_equation.Classes
             {
                 if ((0 <= x) && (x < SizeX) && (0 <= y) && (y < SizeY))
                 {
-                    Title = string.Format("Temp = {0:f5} Iteration = {1}", mathSolver.U[x, y], mathSolver.NumIteration);
+                    Title = string.Format("Time = {0} Temp = {1:f5} X = {2} Y = {3}", Global.Tau * mathSolver.NumIteration,
+                        mathSolver.U[x, y], x, y);
                     Thread.Sleep(2000);
                 }
             }
